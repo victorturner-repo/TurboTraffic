@@ -1,0 +1,29 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dashboard</title>
+<link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+<header>
+<h2>TurboTraffic</h2>
+<nav>
+<a href="index.html">Dashboard</a>
+<a href="create.html">Create</a>
+<a href="campaigns.html">Campaigns</a>
+<a href="settings.html">Settings</a>
+</nav>
+</header>
+<div class="container">
+<div class="card">
+<h3>Total Campaigns</h3>
+<div class="metric" id="total"></div>
+</div>
+</div>
+<script src="./assets/js/storage.js"></script>
+<script>
+document.getElementById("total").textContent = Storage.getCampaigns().length;
+</script>
+</body>
+</html>
