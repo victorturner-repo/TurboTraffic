@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Campaign</title>
+<link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+<header>
+<h2>TurboTraffic</h2>
+<nav>
+<a href="index.html">Dashboard</a>
+<a href="create.html">Create</a>
+<a href="campaigns.html">Campaigns</a>
+<a href="settings.html">Settings</a>
+</nav>
+</header>
+
+<div class="container">
+<div class="card">
+<h3>Create Campaign</h3>
+<label>Name</label>
+<input id="name">
+<label>Link</label>
+<input id="link">
+<label>Channel</label>
+<select id="channel">
+<option>Meta</option>
+<option>Google</option>
+<option>TikTok</option>
+</select>
+<label>Daily Budget</label>
+<input type="number" id="budget">
+<button class="primary" onclick="createCampaign()">Save</button>
+</div>
+</div>
+
+<script src="./assets/js/storage.js"></script>
+<script src="./assets/js/metrics.js"></script>
+<script src="./assets/js/webhook.js"></script>
+<script>
+function createCampaign(){
+  const name=document.getElementById("name").value;
+  const link=document.getElementById("link").value;
+  const channel=document.getElementById("channel").value;
+  const budget=parseFloat(document.getElementById("budget").value);
+
+  const metrics = Metrics.calculate(channel,budget);
+
+  const data = {name,link,channel,budget,metrics,date:new Date().toISOString()};
+  Storage.saveCampaign(data);
+  sendToWebhook(data);
+  window.location.href="campaigns.html";
+}
+</script>
+</body>
+</html>
