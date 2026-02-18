@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Settings</title>
+<link rel="stylesheet" href="./assets/css/main.css">
+</head>
+<body>
+<header>
+<h2>TurboTraffic</h2>
+<nav>
+<a href="index.html">Dashboard</a>
+<a href="create.html">Create</a>
+<a href="campaigns.html">Campaigns</a>
+<a href="settings.html">Settings</a>
+</nav>
+</header>
+<div class="container">
+<div class="card">
+<h3>Webhook</h3>
+<label>Google Sheets Webhook URL</label>
+<input id="webhook">
+<button class="primary" onclick="save()">Save</button>
+</div>
+</div>
+<script src="./assets/js/storage.js"></script>
+<script>
+document.getElementById("webhook").value=Storage.getWebhook();
+function save(){
+  Storage.saveWebhook(document.getElementById("webhook").value);
+  alert("Saved");
+}
+</script>
+</body>
+</html>
